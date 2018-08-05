@@ -1,0 +1,75 @@
+
+
+#Part 1
+
+pollutantmean <- function(directory, pollutant, id=1:332) {
+  
+  files = list.files(directory, pattern="*.csv")
+  
+  data_frame = data.frame()
+  
+  for (i in id) {
+    monitor <- read.csv(files[i])
+    data_frame <- rbind(data_frame, monitor)
+  }
+  
+  return(mean(data_frame[,pollutant], na.rm=TRUE))
+}
+
+
+#Part 2
+
+
+
+complete <- function(directory, id = 1:332) {
+  
+  files = list.files(directory, pattern="*.csv")
+  
+  data_frame = data.frame(matrix(ncol = 2, nrow = 0))
+  names(data_frame) <- c("id", "nobs")
+
+  for (i in id) {
+    monitor <- read.csv(files[i])
+    complete_cases <- sum(complete.cases(monitor))
+    temp_df <- data.frame(i, complete_cases)
+    names(temp_df) <- c("id", "nobs")
+    
+    data_frame <- rbind(data_frame, temp_df)
+  }
+  
+    data_frame
+}
+
+
+#Part 3
+
+
+
+corr <- function(directory, threshold = 0) {
+  
+  files = list.files(directory, pattern="*.csv")
+  
+  a <- numeric()
+  
+  for(file in files) {
+    monitor <- read.csv(file)
+    complete_cases <- sum(complete.cases(monitor))
+    
+    if(complete_cases > threshold) {
+      
+      monitor <- na.omit(monitor)
+      
+      matrix_nitrate = monitor[,'nitrate']
+      matrix_sulfate = monitor[,'sulfate']
+      
+      corr_poll <- cor(matrix_nitrate, matrix_sulfate)
+      
+      a <- c(a, corr_poll)
+      
+    }
+    
+  }
+  
+  a
+  
+}

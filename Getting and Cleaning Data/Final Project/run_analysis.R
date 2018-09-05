@@ -51,13 +51,8 @@ table(big_data$Training.label)
 
 big_data$Training.label <- as.numeric(big_data$Training.label)
 
-avg_walking <- colMeans(big_data[big_data$Training.label == 1,])
-avg_walking_upstairs <- colMeans(big_data[big_data$Training.label == 2,])
-avg_walking_downstairs <- colMeans(big_data[big_data$Training.label == 3,])
-avg_sitting <- colMeans(big_data[big_data$Training.label == 4,])
-avg_standing <- colMeans(big_data[big_data$Training.label == 5,])
-avg_laying <- colMeans(big_data[big_data$Training.label == 6,])
-
-averages <- rbind(avg_walking, avg_walking_upstairs, avg_walking_downstairs, avg_sitting, avg_standing, avg_laying)
+big_data %>% 
+  group_by(Training.label, subject) %>%
+  summarise_all("mean")
 
 

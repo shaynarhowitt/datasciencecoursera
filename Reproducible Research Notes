@@ -1,0 +1,69 @@
+
+why do we need reproducible research?
+new tech increasing data collection throughput, computing power is increased
+especially important when translated to policies 
+
+important as a minimum standard, esp for studies that are hard to replicate
+
+research pipeline:
+  measured data > analytic data > computational results >
+    figures/tables/numerical summaries > article/text
+
+we need: analytic data & code, documentation of code & data, standard means of distribution
+  challenge because there are limited resources to help authors/readers with this
+
+literate (statistical programming) : article is a stream of text and code
+  analysis is divided into text and code 'chunks' 
+  literate programs can be weaved to produce human-readable documents and tangled to produce
+    machine-readable documents
+
+old program: Sweave, uses Latex and R as the documentation and programming languages
+not great, lacks features and is hard to use
+a better alternative is knitr, which uses R as the programming language but you can use others
+
+SCRIPT EVERYTHING!
+
+defining a question as narrow as possible will help to reduce the noise
+define the ideal data set - descriptive, exploratory, inferential, predictive, casual, mechanistic
+obtain the data - try to obtain the raw data, be sure to reference the source/url/access day
+clean the data - understand source, determine if data are good enough 
+exploratory data analysis - summaries, check for missing data, exploratory plots
+statistical prediction/modeling - informed by exploratory, measure uncertainty 
+interpret results - use the appropriate language 
+challenge results, think of potential alternative analyses 
+synthesize/write up results - lead w question, summarize analyses into the story 
+
+how to organize data analysis files?
+
+coding standards - 
+use text files/text editor
+indent your code, limit width of the coe
+limit length of individual functions
+
+markdown is a text to HTML conversion tool for web writers
+  can write via easy to read and write plaint text form, then convert to HTML
+
+R Markdown - the integration of R code with markdown
+  allows one to create docs containing 'live' R code
+  can be converted to standard markdown using the knitr package in R
+  then markdown can be converted to HTML using the markdown package in R
+  any basic editor can be used to create a markdown doc
+  can convert R markdown to slides using the slidify package
+
+ '''{r} will open up a mini r window in the markdown 
+ ''' will end the code chunk
+
+in between the code chunk will be text explaining what you did 
+
+knitr: good for manuals, shorter technical documents, tutorials, reports, data summaries
+  not very good for long research articles, complex time-consuming computations
+  code chunks can have names, which is useful when making graphics 
+  by default, code in a code chunk is echoed, as will the results of the computation
+    can hide either code or results if needed
+
+RMarkdown - knitr produces a Markdown doc - knitr converts Markdown into html (default)
+  you shoudn't mess with the later files, just the R Markdown one
+
+
+
+
